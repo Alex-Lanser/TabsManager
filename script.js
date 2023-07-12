@@ -26,7 +26,7 @@ for (const tab of tabs) {
     elements.add(element);
 }
 document.querySelector("ul").append(...elements);
-const button = document.querySelector("button");
+const button = document.querySelector(".groupTabsButton");
 button.addEventListener("click", async () => {
     const tabTitle = document.getElementById("tabsTitle").value;
     const tabIds = tabs.map(({ id }) => id);
