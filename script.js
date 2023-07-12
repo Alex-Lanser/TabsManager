@@ -29,9 +29,6 @@ document.querySelector("ul").append(...elements);
 const button = document.querySelector(".groupTabsButton");
 
 button.addEventListener("click", async () => {
-    const tabTitle = document.getElementById("tabsTitle").value;
-    const tabIds = tabs.map(({ id }) => id);
-    const group = await chrome.tabs.group({ tabIds });
     let groupColor = document.querySelector('input[name="color"]:checked').value;
     let color;
 
@@ -67,5 +64,14 @@ button.addEventListener("click", async () => {
             color = "grey";
     }
 
+    var tabIds;
+    const tabTitle = document.getElementById("tabsTitle").value;
+    const checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            tabIds = tabs.map(({ id }) => id);
+        }
+    }
+    const group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: tabTitle, color: color });
 });
