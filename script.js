@@ -1,6 +1,7 @@
 const tabs = await chrome.tabs.query({
     url: [
         "https://*/*",
+        "http://*/*",
     ],
 });
 const collator = new Intl.Collator();
