@@ -64,15 +64,16 @@ button.addEventListener("click", async () => {
             color = "grey";
     }
 
-    var tabIds;
-    var group;
+    var tabIds = [];
     const tabTitle = document.getElementById("tabsTitle").value;
     const checkboxes = document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-            tabIds = tabs.map(({ id }) => id)[i];
-            group += await chrome.tabs.group({ tabIds });
+            tabIds.push(tabs.map(({ id }) => id)[i]);
+            checkboxes[i].checked = false;
         }
     }
+    const group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: tabTitle, color: color });
+    document.getElementById("tabsTitle").value = "";
 });
