@@ -11,7 +11,7 @@ const elements = new Set();
 for (const tab of tabs) {
     const element = template.content.firstElementChild.cloneNode(true);
 
-    const title = tab.title.split("-")[0].trim();
+    const title = tab.title.trim();
     const pathname = new URL(tab.url);
 
     element.querySelector(".title").textContent = title;
