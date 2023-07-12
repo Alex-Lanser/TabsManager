@@ -66,39 +66,39 @@ input[type="radio"] {
 }
 
 .grey .button span {
-    background: grey;
+    background: #E6E6E6;
 }
 
 .blue .button span {
-    background: blue;
+    background: #76A7FA;
 }
 
 .red .button span {
-    background: red;
+    background: #ED9D97;
 }
 
 .yellow .button span {
-    background: yellow;
+    background: #FFE168;
 }
 
 .green .button span {
-    background: green;
+    background: #7BCFA9;
 }
 
 .pink .button span {
-    background: pink;
+    background: #F08AC9;
 }
 
 .purple .button span {
-    background: purple;
+    background: #C189F8;
 }
 
 .cyan .button span {
-    background: cyan;
+    background: #82D8E8;
 }
 
 .orange .button span {
-    background: orange;
+    background: #F0A96A;
 }
 
 .layer {
@@ -114,37 +114,37 @@ input[type="radio"] {
 }
 
 .grey input:checked~.layer {
-    border-top: 10px solid grey;
+    border-top: 10px solid #E6E6E6;
 }
 
 .blue input:checked~.layer {
-    border-top: 10px solid blue;
+    border-top: 10px solid #76A7FA;
 }
 
 .red input:checked~.layer {
-    border-top: 10px solid red;
+    border-top: 10px solid #ED9D97;
 }
 
 .yellow input:checked~.layer {
-    border-top: 10px solid yellow;
+    border-top: 10px solid #FFE168  ;
 }
 
 .green input:checked~.layer {
-    border-top: 10px solid green;
+    border-top: 10px solid #7BCFA9;
 }
 
 .pink input:checked~.layer {
-    border-top: 10px solid pink;
+    border-top: 10px solid #F08AC9;
 }
 
 .purple input:checked~.layer {
-    border-top: 10px solid purple;
+    border-top: 10px solid #C189F8;
 }
 
 .cyan input:checked~.layer {
-    border-top: 10px solid cyan;
+    border-top: 10px solid #82D8E8;
 }
 
 .orange input:checked~.layer {
-    border-top: 10px solid orange;
+    border-top: 10px solid #F0A96A;
 }
