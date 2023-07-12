@@ -27,9 +27,45 @@ for (const tab of tabs) {
 }
 document.querySelector("ul").append(...elements);
 const button = document.querySelector(".groupTabsButton");
+
 button.addEventListener("click", async () => {
     const tabTitle = document.getElementById("tabsTitle").value;
     const tabIds = tabs.map(({ id }) => id);
     const group = await chrome.tabs.group({ tabIds });
-    await chrome.tabGroups.update(group, { title: tabTitle });
+    let groupColor = document.querySelector('input[name="color"]:checked').value;
+    let color;
+
+    switch (groupColor) {
+        case "grey":
+            color = "grey";
+            break;
+        case "blue":
+            color = "blue";
+            break;
+        case "red":
+            color = "red";
+            break;
+        case "yellow":
+            color = "yellow";
+            break;
+        case "green":
+            color = "green";
+            break;
+        case "pink":
+            color = "pink";
+            break;
+        case "purple":
+            color = "purple";
+            break;
+        case "cyan":
+            color = "cyan";
+            break;
+        case "orange":
+            color = "orange";
+            break;
+        default:
+            color = "grey";
+    }
+
+    await chrome.tabGroups.update(group, { title: tabTitle, color: color });
 });

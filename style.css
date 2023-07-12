@@ -65,32 +65,40 @@ input[type="radio"] {
     padding: 2px;
 }
 
-input[type="radio"]:checked+label {
-    background: green;
-}
-
-.orange .button span {
-    background: #FF5722;
-}
-
-.amber .button span {
-    background: #FFC107;
-}
-
-.lime .button span {
-    background: #8BC34A;
-}
-
-.teal .button span {
-    background: #009688;
+.grey .button span {
+    background: grey;
 }
 
 .blue .button span {
-    background: #2196F3;
+    background: blue;
 }
 
-.indigo .button span {
-    background: #3F51B5;
+.red .button span {
+    background: red;
+}
+
+.yellow .button span {
+    background: yellow;
+}
+
+.green .button span {
+    background: green;
+}
+
+.pink .button span {
+    background: pink;
+}
+
+.purple .button span {
+    background: purple;
+}
+
+.cyan .button span {
+    background: cyan;
+}
+
+.orange .button span {
+    background: orange;
 }
 
 .layer {
@@ -105,26 +113,38 @@ input[type="radio"]:checked+label {
     z-index: -1;
 }
 
-.orange input:checked~.layer {
-    border-top: 10px solid #FF5722;
-}
-
-.amber input:checked~.layer {
-    border-top: 10px solid #FFB300;
-}
-
-.lime input:checked~.layer {
-    border-top: 10px solid #7CB342;
-}
-
-.teal input:checked~.layer {
-    border-top: 10px solid #00897B;
+.grey input:checked~.layer {
+    border-top: 10px solid grey;
 }
 
 .blue input:checked~.layer {
-    border-top: 10px solid #1E88E5;
+    border-top: 10px solid blue;
 }
 
-.indigo input:checked~.layer {
-    border-top: 10px solid #3949AB;
+.red input:checked~.layer {
+    border-top: 10px solid red;
+}
+
+.yellow input:checked~.layer {
+    border-top: 10px solid yellow;
+}
+
+.green input:checked~.layer {
+    border-top: 10px solid green;
+}
+
+.pink input:checked~.layer {
+    border-top: 10px solid pink;
+}
+
+.purple input:checked~.layer {
+    border-top: 10px solid purple;
+}
+
+.cyan input:checked~.layer {
+    border-top: 10px solid cyan;
+}
+
+.orange input:checked~.layer {
+    border-top: 10px solid orange;
 }
