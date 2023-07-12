@@ -1,0 +1,8 @@
+{
+    "manifest-version": 3,
+    "name": "Tab Manager",
+    "version": 1.0,
+    "action":{
+        "default_popup": "index.html"
+    }
+}
