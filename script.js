@@ -65,13 +65,14 @@ button.addEventListener("click", async () => {
     }
 
     var tabIds;
+    var group;
     const tabTitle = document.getElementById("tabsTitle").value;
     const checkboxes = document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-            tabIds = tabs.map(({ id }) => id);
+            tabIds = tabs.map(({ id }) => id)[i];
+            group += await chrome.tabs.group({ tabIds });
         }
     }
-    const group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: tabTitle, color: color });
 });
