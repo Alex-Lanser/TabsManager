@@ -106,25 +106,25 @@ input[type="radio"]:checked+label {
 }
 
 .orange input:checked~.layer {
-    border-top: 20px solid #FF5722;
+    border-top: 10px solid #FF5722;
 }
 
 .amber input:checked~.layer {
-    border-top: 20px solid #FFB300;
+    border-top: 10px solid #FFB300;
 }
 
 .lime input:checked~.layer {
-    border-top: 20px solid #7CB342;
+    border-top: 10px solid #7CB342;
 }
 
 .teal input:checked~.layer {
-    border-top: 20px solid #00897B;
+    border-top: 10px solid #00897B;
 }
 
 .blue input:checked~.layer {
-    border-top: 20px solid #1E88E5;
+    border-top: 10px solid #1E88E5;
 }
 
 .indigo input:checked~.layer {
-    border-top: 20px solid #3949AB;
+    border-top: 10px solid #3949AB;
 }
