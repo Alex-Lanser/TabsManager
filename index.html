@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500&family=Roboto&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -13,14 +17,14 @@
         <li>
             <a>
                 <input type="checkbox" name="checkbox">
-                <input type="submit" value="Goto Tab" class="gotoButton">
+                <button class="gotoButton" role="button">Goto Tab</button>
                 <h3 class="title">Tab Title</h3>
                 <p class="pathname">Tab Pathname</p>
             </a>
         </li>
     </template>
 
-    <h1>All Tabs</h1>
+    <h1>All Open Tabs</h1>
     <input type="text" class="titletb" id="tabsTitle" required placeholder="Group name">
     <input type="submit" value="Group Tabs" class="groupTabsButton">
     <br>
