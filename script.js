@@ -28,40 +28,47 @@ for (const tab of tabs) {
 document.querySelector("ul").append(...elements);
 const button = document.querySelector(".groupTabsButton");
 
+var lis = document.getElementsByClassName("listItems");
+var idinc = 0;
+for (var i = 0; i < lis.length; i++) {
+    idinc++;
+    lis[i].id = "lisItem" + idinc;
+}
+
 button.addEventListener("click", async () => {
     let groupColor = document.querySelector('input[name="color"]:checked').value;
-    let color;
+    let backgroundColor;
 
     switch (groupColor) {
         case "grey":
-            color = "grey";
+            backgroundColor = "#E6E6E6";
             break;
         case "blue":
-            color = "blue";
+            backgroundColor = "#76A7FA";
             break;
         case "red":
-            color = "red";
+            backgroundColor = "#ED9D97";
             break;
         case "yellow":
-            color = "yellow";
+            backgroundColor = "#FFE168";
             break;
         case "green":
-            color = "green";
+            backgroundColor = "#7BCFA9";
             break;
         case "pink":
-            color = "pink";
+            backgroundColor = "#F08AC9";
             break;
         case "purple":
-            color = "purple";
+            backgroundColor = "#C189F8";
             break;
         case "cyan":
-            color = "cyan";
+            backgroundColor = "#82D8E8";
             break;
         case "orange":
-            color = "orange";
+            backgroundColor = "#F0A96A";
             break;
         default:
-            color = "grey";
+            backgroundColor = "#E6E6E6";
     }
 
     var tabIds = [];
@@ -71,9 +78,11 @@ button.addEventListener("click", async () => {
         if (checkboxes[i].checked) {
             tabIds.push(tabs.map(({ id }) => id)[i]);
             checkboxes[i].checked = false;
+            document.getElementById(lis[i].id).style.background = backgroundColor;
         }
     }
+
     const group = await chrome.tabs.group({ tabIds });
-    await chrome.tabGroups.update(group, { title: tabTitle, color: color });
+    await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
     document.getElementById("tabsTitle").value = "";
 });
