@@ -78,7 +78,7 @@ button.addEventListener("click", async () => {
         if (checkboxes[i].checked) {
             tabIds.push(tabs.map(({ id }) => id)[i]);
             checkboxes[i].checked = false;
-            document.getElementById(lis[i].id).style.background = backgroundColor;
+            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
         }
     }
 
