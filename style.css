@@ -38,7 +38,7 @@ input[type="radio"] {
 }
 
 .groupCheck {
-    visibility: hidden;
+    visibility: hidden; 
 }
 
 .button {
