@@ -74,11 +74,13 @@ button.addEventListener("click", async () => {
     var tabIds = [];
     const tabTitle = document.getElementById("tabsTitle").value;
     const checkboxes = document.getElementsByName("checkbox");
+    const groupCheckbox = document.getElementsByName("groupCheck");
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
             tabIds.push(tabs.map(({ id }) => id)[i]);
             checkboxes[i].checked = false;
-            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
+            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor; 
+            groupCheckbox[i].checked = true;
         }
     }
 
