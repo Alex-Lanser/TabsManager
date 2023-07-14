@@ -4,8 +4,6 @@ const tabs = await chrome.tabs.query({
         "http://*/*",
     ],
 });
-const collator = new Intl.Collator();
-tabs.sort((a, b) => collator.compare(a.title, b.title));
 
 const template = document.getElementById("li_template");
 const elements = new Set();
