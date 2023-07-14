@@ -27,7 +27,6 @@ for (const tab of tabs) {
 }
 document.querySelector("ul").append(...elements);
 const button = document.querySelector(".groupTabsButton");
-
 var lis = document.getElementsByClassName("listItems");
 var idinc = 0;
 for (var i = 0; i < lis.length; i++) {
