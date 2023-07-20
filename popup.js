@@ -83,5 +83,6 @@ button.addEventListener("click", async () => {
 
     const group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
+    console.log(chrome.tabGroups.get(group));
     document.getElementById("tabsTitle").value = "";
 });
