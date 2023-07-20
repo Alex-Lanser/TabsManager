@@ -34,16 +34,46 @@ for (var i = 0; i < lis.length; i++) {
 
 for (var i = 0; i < idinc; i++) {
     // if groupId == -1, then tab is not in a group
-    // tabs.map(({ id }) => id)[i] // Gets the tabId
-    const getTab = chrome.tabs.get(tabs.map(({ id }) => id)[i]);
-    console.log("Tab.get(): ", getTab);
+    const getTab = await chrome.tabs.get(tabs.map(({ id }) => id)[i]);
+    const groupId = getTab.groupId;
+
+    if (groupId != -1) { // If tab is in group
+        const getGroup = await chrome.tabGroups.get(groupId);
+        const groupColor = getGroup.color;
+        const backgroundColor = chooseColor(groupColor);
+        document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
+
+    }
+    else { // Tab is not in group
+
+    }
 }
 
-var group;
 button.addEventListener("click", async () => {
     let groupColor = document.querySelector('input[name="color"]:checked').value;
     let backgroundColor;
+    backgroundColor = chooseColor(groupColor);
 
+    var tabIds = [];
+    const tabTitle = document.getElementById("tabsTitle").value;
+    const checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            tabIds.push(tabs.map(({ id }) => id)[i]);
+            // console.log("Tab.get(): ", chrome.tabs.get(tabs.map(({ id }) => id)[i]));
+            checkboxes[i].checked = false;
+            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
+        }
+    }
+
+    const group = await chrome.tabs.group({ tabIds });
+    await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
+    // console.log(chrome.tabGroups.get(group));
+    document.getElementById("tabsTitle").value = "";
+});
+
+function chooseColor(groupColor) {
+    var backgroundColor;
     switch (groupColor) {
         case "grey":
             backgroundColor = "#E6E6E6";
@@ -75,22 +105,5 @@ button.addEventListener("click", async () => {
         default:
             backgroundColor = "#E6E6E6";
     }
-
-    var tabIds = [];
-    const tabTitle = document.getElementById("tabsTitle").value;
-    const checkboxes = document.getElementsByName("checkbox");
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            tabIds.push(tabs.map(({ id }) => id)[i]);
-            // console.log("Tab.get(): ", chrome.tabs.get(tabs.map(({ id }) => id)[i]));
-            checkboxes[i].checked = false;
-            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
-        }
-    }
-
-    group = await chrome.tabs.group({ tabIds });
-    await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
-    // console.log(chrome.tabGroups.get(group));
-    document.getElementById("tabsTitle").value = "";
-    console.log(group);
-});
+    return backgroundColor;
+}
