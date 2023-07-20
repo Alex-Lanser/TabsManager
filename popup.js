@@ -32,6 +32,14 @@ for (var i = 0; i < lis.length; i++) {
     lis[i].id = "lisItem" + idinc;
 }
 
+for (var i = 0; i < idinc; i++) {
+    // if groupId == -1, then tab is not in a group
+    // tabs.map(({ id }) => id)[i] // Gets the tabId
+    const getTab = chrome.tabs.get(tabs.map(({ id }) => id)[i]);
+    console.log("Tab.get(): ", getTab);
+}
+
+var group;
 button.addEventListener("click", async () => {
     let groupColor = document.querySelector('input[name="color"]:checked').value;
     let backgroundColor;
@@ -71,18 +79,18 @@ button.addEventListener("click", async () => {
     var tabIds = [];
     const tabTitle = document.getElementById("tabsTitle").value;
     const checkboxes = document.getElementsByName("checkbox");
-    const groupCheckbox = document.getElementsByName("groupCheck");
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
             tabIds.push(tabs.map(({ id }) => id)[i]);
+            // console.log("Tab.get(): ", chrome.tabs.get(tabs.map(({ id }) => id)[i]));
             checkboxes[i].checked = false;
-            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor; 
-            groupCheckbox[i].checked = true;
+            document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
         }
     }
 
-    const group = await chrome.tabs.group({ tabIds });
+    group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
-    console.log(chrome.tabGroups.get(group));
+    // console.log(chrome.tabGroups.get(group));
     document.getElementById("tabsTitle").value = "";
+    console.log(group);
 });

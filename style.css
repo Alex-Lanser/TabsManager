@@ -37,10 +37,6 @@ input[type="radio"] {
     display: none;
 }
 
-.groupCheck {
-    visibility: hidden; 
-}
-
 .button {
     display: inline-block;
     position: relative;
