@@ -27,7 +27,6 @@ for (const tab of tabs) {
 }
 
 document.querySelector("ul").append(...elements);
-const button = document.querySelector(".groupTabsButton");
 var lis = document.getElementsByClassName("listItems");
 var idinc = 0;
 for (var i = 0; i < lis.length; i++) {
@@ -45,11 +44,25 @@ for (var i = 0; i < idinc; i++) {
         const groupColor = getGroup.color;
         const backgroundColor = chooseColor(groupColor);
         document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
-
     }
-    else { } // Tab is not in group
+    else { } // Tab is not in group 
 }
+const removeTabsButton = document.querySelector(".removeTabsButton");
+removeTabsButton.addEventListener("click", async () => {
+    var tabIds = [];
+    const checkboxes = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            tabIds.push(tabs.map(({ id }) => id)[i]);
+            checkboxes[i].checked = false;
+            document.getElementById(lis[i].id).style.borderLeft = "none";
+        }
+    }
+    console.log("TabID: ", tabIds);
+    const group = await chrome.tabs.ungroup( tabIds );
+});
 
+const button = document.querySelector(".groupTabsButton");
 button.addEventListener("click", async () => {
     let groupColor = document.querySelector('input[name="color"]:checked').value;
     let backgroundColor;
