@@ -78,8 +78,9 @@ removeTabsButton.addEventListener("click", async () => {
 
 const button = document.querySelector(".groupTabsButton");
 button.addEventListener("click", async () => {
+    var groupColor;
     try {
-        let groupColor = document.querySelector('input[name="color"]:checked').value;
+        groupColor = document.querySelector('input[name="color"]:checked').value;
         let backgroundColor;
         backgroundColor = chooseColor(groupColor);
 
@@ -116,7 +117,12 @@ button.addEventListener("click", async () => {
         document.getElementById("tabsTitle").value = "";
         refreshWindow();
     } catch (TypeError) {
-        alert("Group must have a color and tab(s) must be selected!");
+        if (groupColor == null) {
+            alert("Group must have a color");
+        }
+        else {
+            alert("Tab(s) must be selected to add to a group!");
+        }
     }
 });
 
