@@ -85,7 +85,7 @@ button.addEventListener("click", async () => {
         backgroundColor = chooseColor(groupColor);
 
         var tabIds = [];
-        let tabTitle = document.getElementById("tabsTitle").value;
+        let tabTitle = document.getElementById("tab itle").value;
         const checkboxes = document.getElementsByName("checkbox");
         if (groupColors.indexOf(groupColor) != -1 && groupTitles.indexOf(tabTitle) != -1) {
             // Background color is in groupColors and title is in groupTitles
