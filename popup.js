@@ -20,9 +20,12 @@ for (const tab of tabs) {
         await chrome.tabs.update(tab.id, { active: true });
         await chrome.windows.update(tab.windowId, { focused: true });
     });
-
+    element.querySelector(".removeButton").addEventListener("click", async () => {
+        await chrome.tabs.remove(tab.id);
+    });
     elements.add(element);
 }
+
 document.querySelector("ul").append(...elements);
 const button = document.querySelector(".groupTabsButton");
 var lis = document.getElementsByClassName("listItems");
@@ -44,9 +47,7 @@ for (var i = 0; i < idinc; i++) {
         document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
 
     }
-    else { // Tab is not in group
-
-    }
+    else { } // Tab is not in group
 }
 
 button.addEventListener("click", async () => {
@@ -68,7 +69,6 @@ button.addEventListener("click", async () => {
 
     const group = await chrome.tabs.group({ tabIds });
     await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
-    // console.log(chrome.tabGroups.get(group));
     document.getElementById("tabsTitle").value = "";
 });
 
