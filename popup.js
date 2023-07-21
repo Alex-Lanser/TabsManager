@@ -59,7 +59,7 @@ removeTabsButton.addEventListener("click", async () => {
         }
     }
     console.log("TabID: ", tabIds);
-    const group = await chrome.tabs.ungroup( tabIds );
+    await chrome.tabs.ungroup( tabIds );
 });
 
 const button = document.querySelector(".groupTabsButton");
