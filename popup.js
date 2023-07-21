@@ -1,3 +1,4 @@
+var refresh = false;
 const tabs = await chrome.tabs.query({
     url: [
         "https://*/*",
@@ -22,6 +23,7 @@ for (const tab of tabs) {
     });
     element.querySelector(".removeButton").addEventListener("click", async () => {
         await chrome.tabs.remove(tab.id);
+        refreshWindow();
     });
     elements.add(element);
 }
@@ -67,50 +69,47 @@ removeTabsButton.addEventListener("click", async () => {
         }
     }
     await chrome.tabs.ungroup(tabIds);
+    refreshWindow();
 });
 
 const button = document.querySelector(".groupTabsButton");
 button.addEventListener("click", async () => {
-    try {
-        let groupColor = document.querySelector('input[name="color"]:checked').value;
-        let backgroundColor;
-        backgroundColor = chooseColor(groupColor);
+    let groupColor = document.querySelector('input[name="color"]:checked').value;
+    let backgroundColor;
+    backgroundColor = chooseColor(groupColor);
 
-        var tabIds = [];
-        let tabTitle = document.getElementById("tabsTitle").value;
-        const checkboxes = document.getElementsByName("checkbox");
-        if (groupColors.indexOf(groupColor) != -1 && groupTitles.indexOf(tabTitle) != -1) {
-            // Background color is in groupColors and title is in groupTitles
-            const groupIndex = groupColors.indexOf(groupColor); // groupIds index will be the same as groupTitles and groupColors
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    isChecked = true;
-                    // If backgroundColor == a groupColor && tabTitle == a groupTitle, add selected tabs to group
-                    tabIds.push(tabs.map(({ id }) => id)[i]);
-                    checkboxes[i].checked = false;
-                    document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
-                }
+    var tabIds = [];
+    let tabTitle = document.getElementById("tabsTitle").value;
+    const checkboxes = document.getElementsByName("checkbox");
+    if (groupColors.indexOf(groupColor) != -1 && groupTitles.indexOf(tabTitle) != -1) {
+        // Background color is in groupColors and title is in groupTitles
+        const groupIndex = groupColors.indexOf(groupColor); // groupIds index will be the same as groupTitles and groupColors
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                // If backgroundColor == a groupColor && tabTitle == a groupTitle, add selected tabs to group
+                tabIds.push(tabs.map(({ id }) => id)[i]);
+                checkboxes[i].checked = false;
+                document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
             }
-            const group = await chrome.tabs.group({ tabIds: tabIds, groupId: groupIds[groupIndex] });
-            await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
         }
-        else {
-            // There is not group with same name and color
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    // Parse through all group colors and titles
-                    tabIds.push(tabs.map(({ id }) => id)[i]);
-                    checkboxes[i].checked = false;
-                    document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
-                }
-            }
-            const group = await chrome.tabs.group({ tabIds });
-            await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
-        }
-        document.getElementById("tabsTitle").value = "";
-    } catch (TypeError) {
-        alert("Must select a tab and group must have color!");
+        const group = await chrome.tabs.group({ tabIds: tabIds, groupId: groupIds[groupIndex] });
+        await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
     }
+    else {
+        // There is not group with same name and color
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                // Parse through all group colors and titles
+                tabIds.push(tabs.map(({ id }) => id)[i]);
+                checkboxes[i].checked = false;
+                document.getElementById(lis[i].id).style.borderLeft = "10px solid " + backgroundColor;
+            }
+        }
+        const group = await chrome.tabs.group({ tabIds });
+        await chrome.tabGroups.update(group, { title: tabTitle, color: groupColor });
+    }
+    document.getElementById("tabsTitle").value = "";
+    refreshWindow();
 });
 
 function chooseColor(groupColor) {
@@ -157,4 +156,15 @@ function removeDuplicates(arr) {
         }
     }
     return unique;
+}
+
+function refreshWindow() {
+    if (!refresh) {
+        window.location.href = "popup2.html";
+        refresh = true;
+    }
+    else if (refresh) {
+        window.location.href = "popup.html";
+        refresh = false;
+    }
 }

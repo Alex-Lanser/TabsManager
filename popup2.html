@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500&family=Roboto&display=swap"
+        rel="stylesheet">
+</head>
+<script src="popup.js" type="module"></script>
+
+<body>
+    <template id="li_template">
+        <li class="listItems">
+            <a>
+                <input type="checkbox" name="checkbox" class="checkbox">
+                <button class="gotoButton" role="button">Go To</button>
+                <button class="removeButton" role="button">&times;</button>
+                <h3 class="title">Tab Title</h3>
+                <p class="pathname">Tab Pathname</p>
+            </a>
+        </li>
+    </template>
+
+    <h1>All Open Tabs</h1>
+    <input type="text" class="titletb" id="tabsTitle" required placeholder="Group name">
+    <input type="submit" value="Group" class="groupTabsButton">
+    <input type="submit" value="Remove" class="removeTabsButton">
+    <br>
+    <label class="grey">
+        <input type="radio" name="color" value="grey">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="blue">
+        <input type="radio" name="color" value="blue">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="red">
+        <input type="radio" name="color" value="red">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="yellow">
+        <input type="radio" name="color" value="yellow">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="green">
+        <input type="radio" name="color" value="green">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="pink">
+        <input type="radio" name="color" value="pink">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="purple">
+        <input type="radio" name="color" value="purple">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="cyan">
+        <input type="radio" name="color" value="cyan">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+
+    <label class="orange">
+        <input type="radio" name="color" value="orange">
+        <div class="layer"></div>
+        <div class="button"><span></span></div>
+    </label>
+    <ul></ul>
+
+
+</body>
+
+</html>
